@@ -19,13 +19,13 @@ class GojiMaru
         @cook_word = /つくる|作る/
     end
 
-    def goji_marubot 
+    def goji_routine
       mentions = Twitter.mentions
       last_update = @mongo.find.to_a[-1]["last_update"]
       want_member = count_menber(mentions, last_update, @want_word)
       cook_member = count_menber(mentions, last_update, @cook_word)
       tweet_text = getTweetText(want_member, cook_member)
-      Twitter.update(tweet_text) unless tweet_text == ''
+      Twitter.update(tweet_text) unless tweet_text.nil?
       profile_text = getProfileText(tweet_text)
       Twitter.update_profile({:description => profile_text})
     end
@@ -61,4 +61,4 @@ class GojiMaru
     end
 end
 
-GojiMaru.new.goji_marubot
+GojiMaru.new.goji_routine
