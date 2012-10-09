@@ -15,7 +15,7 @@ class GojiMaru
             config.oauth_token_secret = OAUTH_SECRET
         end
         @mongo = Mongo::Connection.new(MONGO_CONNECT, 27017).db('marubot').collection('daily_gohan')
-        @want_word = /いる|欲しい|ほしい|たべる|食べる|はい/
+        @want_word = /いる|欲しい|ほしい|たべる|食べる|はい|ほしかばい/
         @cook_word = /つくる|作る/
     end
 
